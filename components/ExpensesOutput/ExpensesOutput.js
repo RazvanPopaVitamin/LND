@@ -31,8 +31,8 @@ const DUMMY_EXPENSES = [
   },
   {
     id: "e5",
-    description: "MTG Packs",
-    amount: 99.29,
+    description: "Laptop",
+    amount: 999.29,
     date: new Date("2023-08-26"),
   },
 ];
