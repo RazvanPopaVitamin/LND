@@ -4,44 +4,18 @@ import ExpensesSummary from "./ExpensesSummary";
 import ExpensesList from "./ExpensesList";
 import { GlobalStyles } from "../../constants/styles";
 
-const DUMMY_EXPENSES = [
-  {
-    id: "e1",
-    description: "Shoes",
-    amount: 30.12,
-    date: new Date("2021-12-19"),
-  },
-  {
-    id: "e2",
-    description: "Hat",
-    amount: 1.41,
-    date: new Date("2022-11-19"),
-  },
-  {
-    id: "e3",
-    description: "Chocolate",
-    amount: 111.77,
-    date: new Date("2023-01-22"),
-  },
-  {
-    id: "e4",
-    description: "Bananas",
-    amount: 5.89,
-    date: new Date("2024-01-13"),
-  },
-  {
-    id: "e5",
-    description: "Laptop",
-    amount: 999.29,
-    date: new Date("2023-08-26"),
-  },
-];
+function ExpensesOutput({ expenses, periodName, fallbackText }) {
+  let content = <Text style={styles.infoText}>{fallbackText}</Text>;
 
-function ExpensesOutput({ expenses, periodName }) {
+  if (expenses.length > 0) {
+    content = <ExpensesList expenses={expenses} />;
+  }
+
   return (
     <View style={styles.container}>
-      <ExpensesSummary expenses={DUMMY_EXPENSES} periodName={periodName} />
-      <ExpensesList expenses={DUMMY_EXPENSES} />
+      <ExpensesSummary expenses={expenses} periodName={periodName} />
+
+      {content}
     </View>
   );
 }
@@ -53,5 +27,11 @@ const styles = StyleSheet.create({
     padding: 24,
     backgroundColor: GlobalStyles.colors.primary700,
     flex: 1,
+  },
+  infoText: {
+    color: "white",
+    fontSize: 16,
+    textAlign: "center",
+    marginTop: 32,
   },
 });
